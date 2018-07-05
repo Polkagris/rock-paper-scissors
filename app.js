@@ -3,6 +3,7 @@ const paper = document.getElementById('paper');
 const scissors = document.getElementById('scissors');
 const win = document.getElementById('win');
 const lose = document.getElementById('lose');
+const reset = document.getElementById('reset');
 
 function game(usersHand){
   const computersHand = computer();
@@ -10,6 +11,7 @@ function game(usersHand){
   console.log("This is the computers hand: " + computersHand);
 
 function compare(usersHand, computersHand){
+  //compare computers choice with users choice
   let answer = "";
     switch(usersHand + computersHand){
       case("rr"):
@@ -31,20 +33,20 @@ function compare(usersHand, computersHand){
       answer = "something else";
       break;
     }
+    //return "DRAW!", "WIN!" or "LOSE!"
     return answer;
 }
-  console.log(compare(usersHand, computersHand));
-  if(compare(usersHand, computersHand) == "WIN!"){
-    console.log("WE HAVE A WINNER!");
-    win.innerHTML = parseInt(win.innerHTML) + 1;
-} else if (compare(usersHand, computersHand) == "LOSE!"){
-  lose.innerHTML = parseInt(lose.innerHTML) + 1;
+//increment scoreBoard
+    console.log(compare(usersHand, computersHand));
+    if(compare(usersHand, computersHand) == "WIN!"){
+      win.innerHTML = parseInt(win.innerHTML) + 1;
+    } else if (compare(usersHand, computersHand) == "LOSE!"){
+      lose.innerHTML = parseInt(lose.innerHTML) + 1;
+    }
 }
 
-}
 
-
-//on click return value of r,p or s
+//on click return value of r,p or s => to game function
 rock.addEventListener('click', function(){
    game("r");
 });
@@ -62,12 +64,12 @@ function computer(){
   return letterArr[randomNum];
 }
 
-//compare computers choice with users choice
+reset.addEventListener('click', function(){
+   win.innerHTML = parseInt(win.innerHTML) * 0;
+   lose.innerHTML = parseInt(lose.innerHTML) * 0;
+});
 
 
-
-
-//if win or lose increment scoreBoard
 //reset button
 //background when win
 //background when lose
